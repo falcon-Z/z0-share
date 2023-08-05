@@ -1,6 +1,6 @@
 import * as Form from "@radix-ui/react-form";
 import IconWrapper from "../wrappers/iconWrapper";
-import handleLogin from "@falcon-z/app/actions";
+import { handleLogin } from "@falcon-z/app/actions";
 import { useSearchParams } from "next/navigation";
 
 export default function SignInForm() {
