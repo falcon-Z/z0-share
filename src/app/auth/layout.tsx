@@ -1,8 +1,17 @@
+import { cookies } from "next/dist/client/components/headers";
+import { redirect } from "next/navigation";
+
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const token = cookies().get("token");
+
+  if (token) {
+    redirect("/");
+  }
+
   return (
     <main className="grid place-items-center h-screen w-full p-2">
       <div className="rounded-3xl border border-gray-700 p-4 max-w-md w-full m-1">
