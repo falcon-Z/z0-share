@@ -1,5 +1,6 @@
+"use client";
+
 import NewPostForm from "@falcon-z/app/_components/feed/newPostForm";
-import * as Dialog from "@radix-ui/react-dialog";
 
 export default function NewPostPage() {
   return (
