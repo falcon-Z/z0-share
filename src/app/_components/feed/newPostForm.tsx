@@ -1,7 +1,7 @@
 "use client";
 
 import { handlePostCreation } from "@falcon-z/app/actions";
-import * as Form from "@radix-ui/react-form";
++import * as Form from "@radix-ui/react-form";
 
 export default function NewPostForm() {
   return (
