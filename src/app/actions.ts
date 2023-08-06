@@ -70,5 +70,6 @@ export async function handlePostCreation(data: FormData) {
 
   if (postData._id) {
     revalidatePath("/");
+    redirect("/");
   }
 }
