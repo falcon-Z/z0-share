@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function PostContainer({ post }: { post: Post }) {
   return (
-    <div className="w-full  p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700">
+    <div className="w-full  p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700/75">
       <div className="flex flex-col gap-4 text-xl">
         <div className="flex items-center  gap-4">
           <Image

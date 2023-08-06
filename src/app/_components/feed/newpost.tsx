@@ -6,7 +6,7 @@ import NewPostForm from "./newPostForm";
 
 export default function NewPost() {
   return (
-    <div className="w-full rounded-2xl border-dashed border-2 border-gray-700 p-8 gap-4 grid place-items-center">
+    <div className="w-full rounded-2xl border-dashed border-2 border-gray-700/75 p-8 gap-4 grid place-items-center">
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <button className="w-full h-full text-gray-400 text-5xl grid place-items-center gap-4">
