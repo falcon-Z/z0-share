@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/dist/client/components/headers";
 import { redirect } from "next/navigation";
 
@@ -46,5 +47,28 @@ export async function handleRegistration(data: FormData) {
     redirect("/");
   } else {
     redirect(`/auth/signin/?error=true&message=${authData.message}`);
+  }
+}
+
+export async function handlePostCreation(data: FormData) {
+  const title = data.get("title");
+  const imageUri = data.get("image");
+  const tags = data.get("tags")?.toString().split(",");
+
+  const token = cookies().get("token");
+
+  const response = await fetch(`${process.env.API_HOST_URI}/posts/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token?.value}`,
+    },
+    body: JSON.stringify({ title, imageUri, tags }),
+  });
+
+  const postData = await response.json();
+
+  if (postData._id) {
+    revalidatePath("/");
   }
 }

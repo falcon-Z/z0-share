@@ -1,10 +1,16 @@
-import { CreateMultipartUploadCommand, S3 } from "@aws-sdk/client-s3";
+import {
+  CreateMultipartUploadCommand,
+  PutObjectCommand,
+  S3,
+  S3Client,
+} from "@aws-sdk/client-s3";
+import { data } from "autoprefixer";
 import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 
 export default function PostImageUploader() {
-  const awsClient = new S3({
-    region: "us-east-1",
+  const client = new S3Client({
+    region: `${process.env.NEXT_PUBLIC_AWS_REGION}`,
     credentials: {
       accessKeyId: `${process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID}`,
       secretAccessKey: `${process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY}`,
@@ -19,24 +25,15 @@ export default function PostImageUploader() {
       "image/png": [],
     },
     onDropAccepted(files, event) {
-      if (files.length > 0) {
-        const file = files[0];
-        const params = {
-          Bucket: `${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}`,
-          Key: `${file.name}`,
-          Body: file,
-        };
+      const param = {
+        Bucket: `${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}`,
+        Key: files[0].name,
+        Body: files[0],
+      };
 
-        awsClient
-          .send(new CreateMultipartUploadCommand(params))
-          .then((data) => {
-            const url = `https://${data.Bucket}.s3.amazonaws.com/${data.Key}`;
-
-            console.log(url);
-            console.log(data);
-          })
-          .catch((error) => console.error(error));
-      }
+      client
+        .send(new PutObjectCommand(param))
+        .then((data) => console.log(data));
     },
   });
 
