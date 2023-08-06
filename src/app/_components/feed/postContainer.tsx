@@ -1,18 +1,21 @@
 import type { Post } from "@falcon-z/app/_lib/types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PostContainer({ post }: { post: Post }) {
   return (
-    <div className="w-full  p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700/75">
+    <div className="w-full   p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700/75">
       <div className="flex flex-col gap-4 text-xl">
         <div className="flex items-center  gap-4">
-          <Image
-            src={`https://ui-avatars.com/api/?name=${post.createdBy.name}&background=random`}
-            height={64}
-            width={64}
-            alt=""
-            className=" object-center object-cover rounded-full"
-          />
+          <Link href={`/post/${post._id}`}>
+            <Image
+              src={`https://ui-avatars.com/api/?name=${post.createdBy.name}&background=random`}
+              height={64}
+              width={64}
+              alt=""
+              className=" object-center object-cover rounded-full"
+            />
+          </Link>
           <div>
             <div className="text-2xl font-semibold text-gray-300">
               {post.createdBy.name}
@@ -21,15 +24,15 @@ export default function PostContainer({ post }: { post: Post }) {
           </div>
         </div>
       </div>
-      <div>
+      <Link href={`/post/${post._id}`}>
         <Image
           src={post.imageUri}
           height={400}
           width={300}
           alt=""
-          className="object-center object-cover h-auto   aspect-auto w-full rounded-2xl"
+          className="object-center  h-auto   aspect-auto w-full rounded-2xl  mx-auto object-contain max-h-[50vh]"
         />
-      </div>
+      </Link>
       <div className="">
         <ul className="flex justify-start items-center gap-2">
           {post.tags.map((tag, i) => (
