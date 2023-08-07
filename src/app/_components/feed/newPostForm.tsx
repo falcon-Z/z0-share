@@ -3,8 +3,13 @@
 import { handlePostCreation } from "@falcon-z/app/actions";
 import * as Form from "@radix-ui/react-form";
 import PostImageUploader from "./postImageUploader";
+import { useState } from "react";
 
 export default function NewPostForm() {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const getFileUrl = (url: string | null) => setImageUrl(url);
+
   return (
     <Form.Root
       action={handlePostCreation}
@@ -36,6 +41,9 @@ export default function NewPostForm() {
             required
             placeholder="Enter Image Url"
             className="input-field rounded-2xl"
+            hidden
+            value={imageUrl ? imageUrl : undefined}
+            minLength={5}
           />
         </Form.Control>
         <Form.Message match={"typeMismatch"} className="form-error-message">
@@ -58,9 +66,9 @@ export default function NewPostForm() {
           />
         </Form.Control>
       </Form.Field>
-      <Form.Field name="uploaded" asChild>
-        <PostImageUploader />
-      </Form.Field>
+      <div>
+        <PostImageUploader sendFileUrl={getFileUrl} />
+      </div>
 
       <Form.Submit className="my-4 rounded-full bg-gray-800 w-full p-4 hover:bg-gray-900 focus:outline-none focus:ring focus:ring-gray-700 transition-all duration-200">
         Submit

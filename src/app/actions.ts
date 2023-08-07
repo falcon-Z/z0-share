@@ -62,6 +62,8 @@ export async function handlePostCreation(data: FormData) {
   const imageUri = data.get("image");
   const tags = data.get("tags")?.toString().split(",");
 
+  console.log({ imageUri });
+
   const token = cookies().get("token");
 
   const response = await fetch(`${process.env.API_HOST_URI}/posts/`, {
@@ -79,7 +81,9 @@ export async function handlePostCreation(data: FormData) {
 
   if (postData.post._id) {
     revalidatePath("/");
-    redirect("/?newpost=true");
+    redirect("/");
+  } else {
+    redirect(`/?error=true&message=${postData.message}`);
   }
 }
 

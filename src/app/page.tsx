@@ -19,7 +19,7 @@ export default function Home() {
         <div className="flex  justify-end items-center p-4">
           <LogoutButton token={token ? token : null} />
         </div>
-        <section className="mb-8">
+        <section className={token ? "block mb-8" : "hidden"}>
           <NewPost />
         </section>
         <section>
