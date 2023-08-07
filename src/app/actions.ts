@@ -19,9 +19,8 @@ export async function handleLogin(data: FormData) {
   const authData = await response.json();
   if (authData.token) {
     cookies().set("token", authData.token);
-    cookies().set("id", authData.user._id);
-    cookies().set("email", authData.user.email);
-    cookies().set("name", authData.user.name);
+
+    revalidatePath("/");
     redirect("/");
   } else {
     redirect(`/auth/signin/?error=true&message=${authData.message}`);
@@ -51,6 +50,7 @@ export async function handleRegistration(data: FormData) {
     cookies().set("email", authData.user.email);
     cookies().set("name", authData.user.name);
 
+    revalidatePath("/");
     redirect("/");
   } else {
     redirect(`/auth/signin/?error=true&message=${authData.message}`);
