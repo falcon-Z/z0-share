@@ -1,7 +1,8 @@
 "use client";
 
+import { handleLikes } from "@falcon-z/app/actions";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useState } from "react";
+import { experimental_useOptimistic, useEffect, useState } from "react";
 
 export default function PostActions({
   id,
@@ -13,6 +14,14 @@ export default function PostActions({
   likes: number;
 }) {
   const [canShare, setCanShare] = useState(false);
+
+  const [optimisticLike, addOptimisticLike] = experimental_useOptimistic(
+    { likeCount: likes },
+    (state, newLikeCount: number) => ({
+      ...state,
+      likeCount: newLikeCount,
+    })
+  );
 
   const sharePost = async (title: string, url: string) => {
     setCanShare(true);
@@ -26,9 +35,15 @@ export default function PostActions({
 
   return (
     <div className="flex w-full items-center  justify-around p-4 h-full">
-      <button className="text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2">
+      <button
+        onClick={async () => {
+          addOptimisticLike(optimisticLike.likeCount + 1);
+          await handleLikes(id);
+        }}
+        className="text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2"
+      >
         <Icon icon={"mdi:cards-heart-outline"} />
-        <div className="text-xl">{likes}</div>
+        <div className="text-xl">{optimisticLike.likeCount}</div>
       </button>
       <button
         onClick={() =>

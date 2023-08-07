@@ -75,3 +75,15 @@ export async function handlePostCreation(data: FormData) {
     redirect("/?newpost=true");
   }
 }
+
+export async function handleLikes(id: string) {
+  const token = cookies().get("token");
+
+  const response = await fetch(`${process.env.API_HOST_URI}/posts/${id}/like`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${token?.value}`,
+    },
+  });
+}
