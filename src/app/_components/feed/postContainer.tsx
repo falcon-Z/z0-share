@@ -1,6 +1,8 @@
 import type { Post } from "@falcon-z/app/_lib/types";
 import Image from "next/image";
 import Link from "next/link";
+import IconWrapper from "../wrappers/iconWrapper";
+import PostActions from "./postActions";
 
 export default function PostContainer({ post }: { post: Post }) {
   return (
@@ -46,7 +48,7 @@ export default function PostContainer({ post }: { post: Post }) {
         </ul>
       </div>
       <div>
-        <button>Like</button>
+        <PostActions id={post._id} title={post.title} likes={post.likes} />
       </div>
     </div>
   );

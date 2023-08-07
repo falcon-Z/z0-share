@@ -10,6 +10,7 @@ export type Post = {
   imageUri: string;
   tags: string[];
   createdBy: User;
+  likes: number;
   comments: {
     comment?: string;
     commentBy?: User;
