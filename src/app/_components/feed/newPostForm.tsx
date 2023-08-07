@@ -2,6 +2,7 @@
 
 import { handlePostCreation } from "@falcon-z/app/actions";
 import * as Form from "@radix-ui/react-form";
+import PostImageUploader from "./postImageUploader";
 
 export default function NewPostForm() {
   return (
@@ -44,6 +45,7 @@ export default function NewPostForm() {
           Please select an Image
         </Form.Message>
       </Form.Field>
+
       <Form.Field
         name="tags"
         className="flex flex-col gap2 items-baseline justify-between"
@@ -56,6 +58,10 @@ export default function NewPostForm() {
           />
         </Form.Control>
       </Form.Field>
+      <Form.Field name="uploaded" asChild>
+        <PostImageUploader />
+      </Form.Field>
+
       <Form.Submit className="my-4 rounded-full bg-gray-800 w-full p-4 hover:bg-gray-900 focus:outline-none focus:ring focus:ring-gray-700 transition-all duration-200">
         Submit
       </Form.Submit>
