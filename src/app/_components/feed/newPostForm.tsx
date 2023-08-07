@@ -11,7 +11,7 @@ export default function NewPostForm() {
     >
       <Form.Field
         name="title"
-        className="flex flex-col items-baseline justify-between"
+        className="flex flex-col gap2 items-baseline justify-between"
       >
         <Form.Control asChild>
           <input
@@ -25,7 +25,10 @@ export default function NewPostForm() {
           Please enter a Title
         </Form.Message>
       </Form.Field>
-      <Form.Field name="image">
+      <Form.Field
+        name="image"
+        className="flex flex-col gap2 items-baseline justify-between"
+      >
         <Form.Control asChild>
           <input
             type="url"
@@ -41,7 +44,10 @@ export default function NewPostForm() {
           Please select an Image
         </Form.Message>
       </Form.Field>
-      <Form.Field name="tags">
+      <Form.Field
+        name="tags"
+        className="flex flex-col gap2 items-baseline justify-between"
+      >
         <Form.Control asChild>
           <input
             type="text"

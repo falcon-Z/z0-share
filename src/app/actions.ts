@@ -68,8 +68,10 @@ export async function handlePostCreation(data: FormData) {
 
   const postData = await response.json();
 
-  if (postData._id) {
+  console.log(postData);
+
+  if (postData.post._id) {
     revalidatePath("/");
-    redirect("/");
+    redirect("/?newpost=true");
   }
 }
