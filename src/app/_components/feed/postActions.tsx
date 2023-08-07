@@ -1,23 +1,21 @@
 "use client";
 
-import useAuth from "@falcon-z/app/_context/useAuth";
 import { handleLikes } from "@falcon-z/app/actions";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { cookies } from "next/dist/client/components/headers";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 
 export default function PostActions({
   id,
+  token,
   title,
   likes,
 }: {
   id: string;
+  token: string;
   title: string;
   likes: number;
 }) {
-  const { user } = useAuth();
-
-  const [canShare, setCanShare] = useState(false);
-
   const [optimisticLike, addOptimisticLike] = experimental_useOptimistic(
     { likeCount: likes },
     (state, newLikeCount: number) => ({
@@ -25,6 +23,8 @@ export default function PostActions({
       likeCount: newLikeCount,
     })
   );
+
+  const [canShare, setCanShare] = useState(false);
 
   const sharePost = async (title: string, url: string) => {
     setCanShare(true);
@@ -44,7 +44,7 @@ export default function PostActions({
           await handleLikes(id);
         }}
         className={`text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2 ${
-          user ? "block" : "hidden"
+          token ? "block" : "hidden"
         } `}
       >
         <Icon icon={"mdi:cards-heart-outline"} />

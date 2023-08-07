@@ -86,11 +86,19 @@ export async function handlePostCreation(data: FormData) {
 export async function handleLikes(id: string) {
   const token = cookies().get("token");
 
-  const response = await fetch(`${process.env.API_HOST_URI}/posts/${id}/like`, {
+  await fetch(`${process.env.API_HOST_URI}/posts/${id}/like`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `${token?.value}`,
     },
   });
+
+  revalidatePath("/");
+}
+
+export async function handleLogout() {
+  cookies().delete("token");
+  revalidatePath("/");
+  redirect("/auth/signin");
 }

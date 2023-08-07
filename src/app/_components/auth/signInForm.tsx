@@ -75,7 +75,7 @@ export default function SignInForm() {
           <span className="mr-4">
             <IconWrapper icon={"carbon:warning"} />
           </span>
-          Please Enter your Password
+          <div className="text-center">Please Enter your Password</div>
         </Form.Message>
       </Form.Field>
       <Form.Submit className="my-4 rounded-full bg-gray-800 w-full p-4 hover:bg-gray-900 focus:outline-none focus:ring focus:ring-gray-700 transition-all duration-200 ">

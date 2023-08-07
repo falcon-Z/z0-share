@@ -1,10 +1,12 @@
 import type { Post } from "@falcon-z/app/_lib/types";
+import { cookies } from "next/dist/client/components/headers";
 import Image from "next/image";
 import Link from "next/link";
-import IconWrapper from "../wrappers/iconWrapper";
 import PostActions from "./postActions";
 
 export default function PostContainer({ post }: { post: Post }) {
+  const token = cookies().get("token");
+
   return (
     <div className="w-full   p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700/75">
       <div className="flex flex-col gap-4 text-xl">
@@ -48,7 +50,12 @@ export default function PostContainer({ post }: { post: Post }) {
         </ul>
       </div>
       <div>
-        <PostActions id={post._id} title={post.title} likes={post.likes} />
+        <PostActions
+          token={token?.value}
+          id={post._id}
+          title={post.title}
+          likes={post.likes}
+        />
       </div>
     </div>
   );

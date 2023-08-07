@@ -1,17 +1,22 @@
 "use client";
 
-import useAuth from "@falcon-z/app/_context/useAuth";
+import { handleLogout } from "@falcon-z/app/actions";
 import Link from "next/link";
+import { useTransition } from "react";
 
-export default function LogoutButton() {
-  const { user } = useAuth();
+export default function LogoutButton({ token }: { token: string | null }) {
+  const [isPending, startTransition] = useTransition();
 
   return (
     <div>
-      <Link href={"/auth/signin"} className={`${user ? "hidden" : "block"}`}>
+      <Link href={"/auth/signin"} className={`${token ? "hidden" : "block"}`}>
         Sign In
       </Link>
-      <button type="button" className={`${user ? "block" : "hidden"}`}>
+      <button
+        onClick={() => startTransition(() => handleLogout())}
+        type="button"
+        className={`${token ? "block" : "hidden"}`}
+      >
         Sign Out
       </button>
     </div>
