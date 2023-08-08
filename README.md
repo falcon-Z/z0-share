@@ -1,3 +1,10 @@
+# Z0-Share Frontend
+
+This Repo contains frontend code for Z0-Share A social sharing platform built with MERN stack
+
+#### Source code for API
+You could find source code for the backend (API) on [falcon-Z/z0-share-backend](https://github.com/falcon-Z/z0-share-server)
+
 # Project Setup
 Built With Next.Js 13 and uses AppRouter for Routing and Navigation. The use case for this
 project allowed me to also experiment with Server Actions and Various other new features.
