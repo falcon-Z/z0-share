@@ -17,7 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="w-full mb-16 ">
+          <AppBar />
+        </header>
+        <main className="relative">{children}</main>
+      </body>
     </html>
   );
 }

@@ -1,23 +1,20 @@
 "use client";
 
+import { Post } from "@falcon-z/app/_lib/types";
 import { handleLikes } from "@falcon-z/app/actions";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { cookies } from "next/dist/client/components/headers";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 
 export default function PostActions({
-  id,
   token,
-  title,
-  likes,
+  post,
 }: {
-  id: string;
-  token: string;
-  title: string;
-  likes: number;
+  token: string | null;
+  post: Post;
 }) {
   const [optimisticLike, addOptimisticLike] = experimental_useOptimistic(
-    { likeCount: likes },
+    { likeCount: post.likes },
     (state, newLikeCount: number) => ({
       ...state,
       likeCount: newLikeCount,
@@ -41,7 +38,7 @@ export default function PostActions({
       <button
         onClick={async () => {
           addOptimisticLike(optimisticLike.likeCount + 1);
-          await handleLikes(id);
+          await handleLikes(post._id);
         }}
         className={`text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2 ${
           token ? "block" : "hidden"
@@ -52,7 +49,10 @@ export default function PostActions({
       </button>
       <button
         onClick={() =>
-          sharePost(title, `${process.env.NEXT_PUBLIC_HOST_URI}/post/${id}`)
+          sharePost(
+            post.title,
+            `${process.env.NEXT_PUBLIC_HOST_URI}/post/${post._id}`
+          )
         }
         className="text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2"
       >
