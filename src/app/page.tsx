@@ -13,9 +13,9 @@ export default function Home() {
 
   if (token) {
     setToken(token);
+    revalidatePath("/");
   }
 
-  revalidatePath("/");
 
 
   return (
