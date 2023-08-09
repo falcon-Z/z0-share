@@ -5,13 +5,15 @@ export default async function PostPage({ params }: { params: { id: string } }) {
     `${process.env.API_HOST_URI}/posts/${params.id}`
   );
 
-  const post = await response.json();
+  const data = await response.json();
+
+  const post = await data.post
 
   return (
     <div className=" mt-8 grid max-h-screen place-items-center h-full w-full ">
-      <section className="w-full  max-w-4xl">
+      <div className="w-full  max-w-4xl">
         <PostContainer post={post} />
-      </section>
+      </div>
     </div>
   );
 }

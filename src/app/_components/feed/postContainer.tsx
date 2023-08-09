@@ -2,10 +2,8 @@ import type { Post } from "@falcon-z/app/_lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import PostActions from "./postActions";
-import useToken from "@falcon-z/app/_hooks/useToken";
 
 export default function PostContainer({ post }: { post: Post }) {
-  const { token } = useToken();
 
   return (
     <div className="w-full   p-4 flex flex-col gap-4 my-4 rounded-2xl border-2 border-gray-700/75">
@@ -48,7 +46,7 @@ export default function PostContainer({ post }: { post: Post }) {
         </ul>
       </div>
       <div>
-        <PostActions token={token} post={post} />
+        <PostActions post={post} />
       </div>
     </div>
   );

@@ -1,18 +1,19 @@
 "use client";
 
+import useToken from "@falcon-z/app/_hooks/useToken";
 import { Post } from "@falcon-z/app/_lib/types";
 import { handleLikes } from "@falcon-z/app/actions";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { cookies } from "next/dist/client/components/headers";
 import { experimental_useOptimistic, useEffect, useState } from "react";
 
 export default function PostActions({
-  token,
   post,
 }: {
-  token: string | null;
   post: Post;
 }) {
+
+  const { token } = useToken()
+
   const [optimisticLike, addOptimisticLike] = experimental_useOptimistic(
     { likeCount: post.likes },
     (state, newLikeCount: number) => ({
@@ -40,9 +41,8 @@ export default function PostActions({
           addOptimisticLike(optimisticLike.likeCount + 1);
           await handleLikes(post._id);
         }}
-        className={`text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2 ${
-          token ? "block" : "hidden"
-        } `}
+        className={`text-xl flex items-center gap-2 hover:bg-gray-800/50 rounded-3xl px-4 py-2 ${token != null ? "hidden" : "block"
+          } `}
       >
         <Icon icon={"mdi:cards-heart-outline"} />
         <div className="text-xl">{optimisticLike.likeCount}</div>

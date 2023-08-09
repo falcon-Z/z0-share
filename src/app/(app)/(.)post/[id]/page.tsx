@@ -1,4 +1,6 @@
 import PostDialog from "@falcon-z/app/_components/feed/postDialog";
+import useToken from "@falcon-z/app/_hooks/useToken";
+import { cookies } from "next/dist/client/components/headers";
 
 export default async function PostInterceptPage({
   params,
@@ -9,7 +11,11 @@ export default async function PostInterceptPage({
     `${process.env.API_HOST_URI}/posts/${params.id}`
   );
 
-  const post = await response.json();
+  const data = await response.json();
+  const post = data.post
+
+
+  const token = cookies().get("token")?.value;
 
   return (
     <div className="min-h-screen">
