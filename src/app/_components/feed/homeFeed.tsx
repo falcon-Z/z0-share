@@ -6,8 +6,6 @@ export default async function HomeFeed() {
   const data = await response.json();
   const posts = data.posts as Post[];
 
-  console.log(posts);
-
   return (
     <div className="h-full">
       <div
@@ -17,13 +15,13 @@ export default async function HomeFeed() {
       >
         <h2 className="text-4xl my-16 text-gray-400">No Posts to Show Yet</h2>
       </div>
-      <section className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8">
         {posts.map((post) => (
           <div key={post._id}>
             <PostContainer post={post} />
           </div>
         ))}
-      </section>
+      </div>
     </div>
   );
 }

@@ -4,9 +4,15 @@ import { handlePostCreation } from "@falcon-z/app/actions";
 import * as Form from "@radix-ui/react-form";
 import PostImageUploader from "./postImageUploader";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function NewPostForm() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const searchparams = useSearchParams();
+
+  const error = searchparams.get("error");
+  const message = searchparams.get("message");
 
   const getFileUrl = (url: string | null) => setImageUrl(url);
 
@@ -66,7 +72,7 @@ export default function NewPostForm() {
           />
         </Form.Control>
       </Form.Field>
-      <div>
+      <div className="p-2 rounded-2xl border-2 border-dashed border-gray-700/25">
         <PostImageUploader sendFileUrl={getFileUrl} />
       </div>
 

@@ -1,9 +1,10 @@
 import { cookies } from "next/dist/client/components/headers";
-import NewPost from "./_components/feed/newpost";
+import NewPost from "./_components/feed/newPostButton";
 import HomeFeed from "./_components/feed/homeFeed";
 import LogoutButton from "./_components/auth/logoutButton";
 import useToken from "./_hooks/useToken";
 import { revalidatePath } from "next/cache";
+import NewPostButton from "./_components/feed/newPostButton";
 
 export default function Home() {
   const token = cookies().get("token")?.value;
@@ -11,10 +12,10 @@ export default function Home() {
   const { setToken } = useToken();
 
   if (token) {
+    revalidatePath("/");
     setToken(token);
   }
 
-  revalidatePath("/");
 
   return (
     <div className=" min-h-screen h-full w-full p-2 grid place-items-center gap-8">
@@ -23,7 +24,7 @@ export default function Home() {
           <LogoutButton token={token ? token : null} />
         </div>
         <div className={token ? "block mb-8" : "hidden"}>
-          <NewPost />
+          <NewPostButton />
         </div>
         <div>
           <HomeFeed />

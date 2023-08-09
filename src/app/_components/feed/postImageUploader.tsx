@@ -9,8 +9,8 @@ export default function PostImageUploader({
   sendFileUrl: (url: string | null) => void;
 }) {
   const [fileRejected, setFileRejected] = useState(false);
-  const [uploaded, setUploaded] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const client = new UploadClient({
     publicKey: `${process.env.NEXT_PUBLIC_UPCARE_PUBLIC_KEY}`,
@@ -26,12 +26,12 @@ export default function PostImageUploader({
       },
       onDropAccepted(files, event) {
         const handleUpload = async () => {
-          setUploading(true);
+          setIsUploading(true);
           const upload = await client.uploadFile(files[0]);
 
           if (upload.uuid) {
-            setUploading(false);
-            setUploaded(true);
+            setIsUploading(false);
+            setIsUploaded(true);
             sendFileUrl(upload.cdnUrl);
           }
         };
@@ -77,15 +77,15 @@ export default function PostImageUploader({
             className="object-center object-cover"
           />
 
-          <div className={uploading ? "block" : "hidden"}>
-            <div className="absolute inset-0 backdrop-blur-sm grid place-items-center">
-              Uploading...
+          <div className={isUploading ? "block" : "hidden"}>
+            <div className="absolute inset-0 backdrop-blur-sm  backdrop-brightness-50 grid place-items-center">
+              isUploading...
             </div>
           </div>
         </div>
       </div>
       <aside>
-        <h4 className={uploaded ? "block" : "hidden"}>Uploaded Successfully</h4>
+        <h4 className={isUploaded ? "block" : "hidden"}>isUploaded Successfully</h4>
         <h4>Selected file</h4>
         <ul>{acceptedFileItems}</ul>
         <h4 className={fileRejected ? "block" : "hidden"}>Rejected file</h4>
