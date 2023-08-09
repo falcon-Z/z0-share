@@ -12,9 +12,10 @@ export default function Home() {
   const { setToken } = useToken();
 
   if (token) {
-    revalidatePath("/");
     setToken(token);
   }
+
+  revalidatePath("/");
 
 
   return (
