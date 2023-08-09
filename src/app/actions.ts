@@ -93,7 +93,7 @@ export async function handleLikes(id: string) {
   });
 
   revalidatePath("/");
-  revalidatePath(`/post/${id}`);
+  revalidatePath("/post/[id]");
 }
 
 export async function handleLogout() {
