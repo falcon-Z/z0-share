@@ -42,8 +42,6 @@ export async function handleRegistration(data: FormData) {
 
   const authData = await response.json();
 
-  console.log(authData);
-
   if (authData.token) {
     cookies().set("token", authData.token);
     cookies().set("id", authData.user._id);
@@ -62,8 +60,6 @@ export async function handlePostCreation(data: FormData) {
   const imageUri = data.get("image");
   const tags = data.get("tags")?.toString().split(",");
 
-  console.log({ imageUri });
-
   const token = cookies().get("token");
 
   const response = await fetch(`${process.env.API_HOST_URI}/posts/`, {
@@ -77,13 +73,11 @@ export async function handlePostCreation(data: FormData) {
 
   const postData = await response.json();
 
-  console.log(postData);
-
   if (postData.post._id) {
     revalidatePath("/");
     redirect("/");
   } else {
-    redirect(`/?error=true&message=${postData.message}`);
+    redirect(`/?error=false&message=${postData.message}`);
   }
 }
 
