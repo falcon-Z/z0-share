@@ -1,86 +1,94 @@
 # Z0-Share Frontend
 
-This Repo contains frontend code for Z0-Share A social sharing platform built with MERN stack. 
+This repository contains the frontend code for Z0-Share, a social sharing platform built using the MERN stack.
 
-This application is built to demonstrate capabilities and challenges when working with Modern React with React Server Components using Next.Js 13. This project employees most best practices and features related to RSC. 
+The application is designed to showcase the capabilities and challenges of working with Modern React and React Server Components using Next.js 13. It employs a wide range of best practices and features related to React Server Components.
 
-The project uses the Following Next 13 features
-1. App Router
-2. Server Actions
-3. SSR and ISR
-4. Route Introspection
-5. Optimistic Updates (Using experimental React hook)
-6. Caching and Revalidation
-7. React Server Components
-8. Accessible UI with Keyboard Navigation
-9. Server actions to handle form submisions
-10. Next cookies
+> **Note:** The app utilizes bleeding-edge and experimental features of React. These features are subject to change until they stabilize, so this app is intended for exploration rather than production use. It's a playground for modern development practices with Next.js.
 
-... and more
+## Project Overview
 
-> **Note:** The app uses most modern bleeding edge and some experimental features of React. These features are prone to change and updates until they reach stable and therefore this app is not ment for production. Use this to explore modern development practices with Next.js
+Z0-Share is built using Next.js 13 and leverages the power of AppRouter for routing and navigation. This project has allowed me to experiment with various new features, including Server Actions and other cutting-edge technologies.
 
-#### Source code for API
-You could find source code for the backend (API) on [falcon-Z/z0-share-backend](https://github.com/falcon-Z/z0-share-server)
-
-# Project Setup
-Built With Next.Js 13 and uses AppRouter for Routing and Navigation. The use case for this
-project allowed me to also experiment with Server Actions and Various other new features.
 ## Setup
-Follow these instructions below to get up and running locally
+
+To get started with the project locally, follow these instructions:
+
 ### Clone the Repository
-```
-   git clone <https://github.com/falcon-Z/z0-share.git
-```
-### (Optional) Recommend Setting up Volta 
-for Node version Management. It automatically picks up
-on the version of Node.Js used for Development or you could find the same inside
-package.json file under volta section Read More about Volta on [Volta - Getting Started](https://volta.sh)
 
-If you are using Linux or WSL on windows setup volta through the following command
-```
-  curl '<https://get.volta.sh>" | bash
+```bash
+git clone https://github.com/falcon-Z/z0-share.git
 ```
 
-### Install Project Dependencies 
+### (Optional) Setting up Volta
+
+For Node version management, I recommend using Volta. It automatically detects the version of Node.js used for development. To install Volta, follow these steps:
+
+```bash
+curl https://get.volta.sh | bash
 ```
-  npm i
+
+If you're using Linux or WSL on Windows, you can install Volta using the provided command.
+
+### Install Project Dependencies
+
+```bash
+npm install
 ```
 
 ### Setup Environment Variables
-> Unfortunately, I couldn't get AWS S3 to work due to some unforeseen circumstances as
-a temporary alternate I am using Uploadcare for file storage and retrieval
-To acquire Keys from Uploadcare
-1. login to [upload care](https://uploadcare.com/)
-2. On the Dashboard visit settings → API Keys to acquire Public key and Secret
-3. Create a file .env.local on the root directory
 
-### The Following Variables are Required to run the app
-```
-API_HOST_URI=http://localhost:3002/api/v1 //API Endpoint to access server API's
+As an alternate to AWS S3, the app uses Uploadcare for file storage and retrieval. To set up environment variables, follow these steps:
+
+1. Log in to [Uploadcare](https://uploadcare.com/) and go to Settings → API Keys to get your Public Key and Secret.
+2. Create a file named `.env.local` in the root directory of the project.
+
+The following variables are required for the app to run:
+
+```env
+API_HOST_URI=http://localhost:3002/api/v1  # API Endpoint to access server APIs
 NEXT_PUBLIC_HOST_URI=http://localhost:3000
-NEXT_PUBLIC_UPCARE_PUBLIC_KEY= //Uploadcare API KEY
-NEXT_PUBLIC_UPCARE_SECRET=//Uploadcare API Secret
+NEXT_PUBLIC_UPCARE_PUBLIC_KEY=YOUR_PUBLIC_KEY_HERE
+NEXT_PUBLIC_UPCARE_SECRET=YOUR_SECRET_KEY_HERE
 ```
-### To run the app in Development mode
- > Make sure to start the server before running the following command
 
+### Running the App
+
+Before running the app, make sure to start the server. Then, execute the following command:
+
+```bash
+npm run dev
 ```
-  npm run dev
-```
-Once setup app should be running in [localhost](<http://localhost>) port
-3000
+
+The app should now be accessible at [http://localhost:3000](http://localhost:3000).
 
 ## Project Structure
-Components are Located inside `src/app/_components` where components are then separated by whre they are used for example directory `auth` contains components related to authentication and `feed` for everything being used in the Feed Page UI
+
+The components are organized under `src/app/_components`. Each component directory is categorized based on its usage, e.g., the `auth` directory contains components related to authentication, while the `feed` directory contains components for the feed page's UI.
 
 ## Project Features
 
--  Form SUbmisions through server Actions
--  Handles likes with Optimistic Update
--  Accessible UI Components with Keyboard navigation
--  Share Posts with Browser Share APi
--  Uploads files through Uploadcare
--  Allows Drag ad Drop FIle Uploads
--  Focus on a CLean Minimal UI
--  Designed with chalenging colors and Design Elements
+- Seamlessly submit forms using Server Actions.
+- Efficiently manage likes with Optimistic Updates.
+- Deliver an accessible UI experience with keyboard navigation.
+- Facilitate sharing posts using the Browser Share API.
+- Allow users to upload files through Uploadcare.
+- Enable intuitive drag-and-drop file uploads.
+- Present a clean and minimal UI design.
+- Embrace challenging colors and design elements for a unique aesthetic.
+
+## Screenshots
+
+### Auth UI
+![Authentication UI](https://github.com/falcon-Z/z0-share/assets/28111283/66ad4db7-b138-4458-8580-57fb93c80b7e)
+
+### Feed UI
+![Feed UI](https://github.com/falcon-Z/z0-share/assets/28111283/5ed576da-a9b8-418e-b1ab-edad9803ee3c)
+
+### New Post UI
+![New Post UI](https://github.com/falcon-Z/z0-share/assets/28111283/f0bf3594-9ed5-49b2-9045-f69b51a4ed0a)
+(Uses Route Introspection)
+
+### Post Preview
+![Post Preview](https://github.com/falcon-Z/z0-share/assets/28111283/2f09c00c-ed43-4499-857e-7bf91c5bec98)
+(Uses Route Introspection)
