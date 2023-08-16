@@ -1,6 +1,24 @@
 # Z0-Share Frontend
 
-This Repo contains frontend code for Z0-Share A social sharing platform built with MERN stack
+This Repo contains frontend code for Z0-Share A social sharing platform built with MERN stack. 
+
+This application is built to demonstrate capabilities and challenges when working with Modern React with React Server Components using Next.Js 13. This project employees most best practices and features related to RSC. 
+
+The project uses the Following Next 13 features
+1. App Router
+2. Server Actions
+3. SSR and ISR
+4. Route Introspection
+5. Optimistic Updates (Using experimental React hook)
+6. Caching and Revalidation
+7. React Server Components
+8. Accessible UI with Keyboard Navigation
+9. Server actions to handle form submisions
+10. Next cookies
+
+... and more
+
+> **Note:** The app uses most modern bleeding edge and some experimental features of React. These features are prone to change and updates until they reach stable and therefore this app is not ment for production. Use this to explore modern development practices with Next.js
 
 #### Source code for API
 You could find source code for the backend (API) on [falcon-Z/z0-share-backend](https://github.com/falcon-Z/z0-share-server)
