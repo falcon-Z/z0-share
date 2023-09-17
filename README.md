@@ -1,68 +1,34 @@
-# Z0-Share Frontend
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This Repo contains frontend code for Z0-Share A social sharing platform built with MERN stack
+## Getting Started
 
-#### Source code for API
-You could find source code for the backend (API) on [falcon-Z/z0-share-backend](https://github.com/falcon-Z/z0-share-server)
+First, run the development server:
 
-# Project Setup
-Built With Next.Js 13 and uses AppRouter for Routing and Navigation. The use case for this
-project allowed me to also experiment with Server Actions and Various other new features.
-## Setup
-Follow these instructions below to get up and running locally
-### Clone the Repository
-```
-   git clone <https://github.com/falcon-Z/z0-share.git
-```
-### (Optional) Recommend Setting up Volta 
-for Node version Management. It automatically picks up
-on the version of Node.Js used for Development or you could find the same inside
-package.json file under volta section Read More about Volta on [Volta - Getting Started](https://volta.sh)
-
-If you are using Linux or WSL on windows setup volta through the following command
-```
-  curl '<https://get.volta.sh>" | bash
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-### Install Project Dependencies 
-```
-  npm i
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Setup Environment Variables
-> Unfortunately, I couldn't get AWS S3 to work due to some unforeseen circumstances as
-a temporary alternate I am using Uploadcare for file storage and retrieval
-To acquire Keys from Uploadcare
-1. login to [upload care](https://uploadcare.com/)
-2. On the Dashboard visit settings → API Keys to acquire Public key and Secret
-3. Create a file .env.local on the root directory
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### The Following Variables are Required to run the app
-```
-API_HOST_URI=http://localhost:3002/api/v1 //API Endpoint to access server API's
-NEXT_PUBLIC_HOST_URI=http://localhost:3000
-NEXT_PUBLIC_UPCARE_PUBLIC_KEY= //Uploadcare API KEY
-NEXT_PUBLIC_UPCARE_SECRET=//Uploadcare API Secret
-```
-### To run the app in Development mode
- > Make sure to start the server before running the following command
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```
-  npm run dev
-```
-Once setup app should be running in [localhost](<http://localhost>) port
-3000
+## Learn More
 
-## Project Structure
-Components are Located inside `src/app/_components` where components are then separated by whre they are used for example directory `auth` contains components related to authentication and `feed` for everything being used in the Feed Page UI
+To learn more about Next.js, take a look at the following resources:
 
-## Project Features
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
--  Form SUbmisions through server Actions
--  Handles likes with Optimistic Update
--  Accessible UI Components with Keyboard navigation
--  Share Posts with Browser Share APi
--  Uploads files through Uploadcare
--  Allows Drag ad Drop FIle Uploads
--  Focus on a CLean Minimal UI
--  Designed with chalenging colors and Design Elements
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
