@@ -1,13 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "./_components/ui/navigation-menu";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <main className="grid place-items-center min-h-screen ">
+        <header className="flex items-center justify-between p-4">
+          <Link href="/">Z0-Share </Link>
+        </header>
+        <main className="grid place-items-center min-h-screen m-1 lg:p-4 ">
           {children}
         </main>
       </body>
