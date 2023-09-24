@@ -55,3 +55,50 @@ export const verificationTokens = sqliteTable(
     compoundKey: primaryKey(vt.identifier, vt.token),
   })
 );
+
+export const posts = sqliteTable("post", {
+  id: text("id").notNull().primaryKey(),
+  slug: text("slug").notNull(),
+  content: text("content").notNull(),
+  published: integer("published", { mode: "timestamp_ms" }).notNull(),
+  authorId: text("authorId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+});
+
+export const image = sqliteTable("image", {
+  id: text("id").notNull().primaryKey(),
+  url: text("url").notNull(),
+  postId: text("postId")
+    .notNull()
+    .references(() => posts.id, { onDelete: "cascade" }),
+  catpion: text("caption"),
+});
+
+export const likes = sqliteTable("like", {
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  postId: text("postId")
+    .notNull()
+    .references(() => posts.id, { onDelete: "cascade" }),
+});
+
+export const comments = sqliteTable("comment", {
+  id: text("id").notNull().primaryKey(),
+  content: text("content").notNull(),
+  authorId: text("authorId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  postId: text("postId")
+    .notNull()
+    .references(() => posts.id, { onDelete: "cascade" }),
+});
+
+export const tags = sqliteTable("tag", {
+  id: text("id").notNull().primaryKey(),
+  name: text("name").notNull(),
+  postId: text("postId")
+    .notNull()
+    .references(() => posts.id, { onDelete: "cascade" }),
+});
