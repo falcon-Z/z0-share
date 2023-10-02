@@ -1,9 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import Navbar from "./_components/ui/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,17 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
-        <header className="flex items-center justify-between py-4 px-16 sticky top-0 z-50 backdrop-blur bg-opacity-5">
-          <Link href="/">Z0-Share </Link>
-          <Link href="https://github.com/falcon-Z/z0-share" target="_blank">
-            <GitHubLogoIcon className="w-6 h-6 bg-neutral-950" />
-          </Link>
-        </header>
-        <main className="grid place-items-center min-h-screen m-1 lg:p-4 ">
-          {children}
-        </main>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

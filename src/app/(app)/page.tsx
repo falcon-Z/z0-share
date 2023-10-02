@@ -1,6 +1,6 @@
-import HomeFeed from "./_components/feed/homeFeed";
-import CreateNewPostButton from "./_components/posts/createNewPostButton";
-import { Button } from "./_components/ui/button";
+import HomeFeed from "../_components/feed/homeFeed";
+import CreateNewPostButton from "../_components/posts/createNewPostButton";
+import { Button } from "../_components/ui/button";
 
 export default function Home() {
   return (
