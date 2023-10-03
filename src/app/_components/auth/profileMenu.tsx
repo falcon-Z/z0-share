@@ -11,9 +11,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@falcon-z/app/_components/ui/dropdown-menu";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProfileMenu() {
   const { data } = useSession();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!data?.user?.name) {
+      router.replace("/profile/setup");
+    }
+  }, []);
 
   return (
     <DropdownMenu>
