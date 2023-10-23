@@ -1,6 +1,5 @@
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 import {
@@ -13,31 +12,27 @@ import {
 } from "@falcon-z/app/_components/ui/dropdown-menu";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Link from "next/link";
 
 export default function ProfileMenu() {
-  const { data } = useSession();
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!data?.user?.name) {
-      router.replace("/profile/setup");
-    }
-  }, []);
+  const { isLoading, user } = useUser();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={`${data?.user?.image}`} />
-          <AvatarFallback>{data?.user?.name}</AvatarFallback>
+          <AvatarImage src={`${user?.picture}`} />
+          <AvatarFallback>{user?.name}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href={"/api/auth/logout"}>Logout</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
